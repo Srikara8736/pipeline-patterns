@@ -1,6 +1,9 @@
-
 pipeline {
     agent any
+
+    tools {
+        maven 'Maven-3.9'
+    }
 
     stages {
         stage('Build') {
@@ -12,18 +15,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test'
-            }
-        }
-
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t myapp: .'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh './deploy.sh'
             }
         }
     }
